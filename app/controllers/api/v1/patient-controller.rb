@@ -2,10 +2,13 @@ module Api::V1
   class PatientController < Api::V1::ApiController
     def update
       @patient = Patient.find(params[:id])
-      @patient.update_attributes(idea_params)
+      @patient.update_attributes(patient_params)
       render json: @patient
     end
-
+    def create
+      @idea = Patient.create(patient_params)
+      render json: @patient
+    end
     def index
       @patient = Patient.all
       render json: @patient
